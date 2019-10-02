@@ -1,0 +1,43 @@
+import React, { Component } from 'react';
+import logo from '../../../src/assets/Dropbox_Icon.png';
+import "./styles.css"
+import api from '../../services/api';
+
+export default class Main extends Component {
+
+    state = { // Contém todas informações manipuladas pelo componente.
+        newBox: '',
+    };
+
+    handleSubmit = async e => {
+        e.preventDefault();
+        //console.log(this.state.newBox);
+
+        const response = await api.post('boxes', {
+            title: this.state.newBox,
+        });
+        // console.log(response.data);
+
+        this.props.history.push(`/box/${response.data._id}`)
+    };
+
+    handleInputChange = (e) => {
+        this.setState({ newBox: e.target.value });
+    }
+
+    render() {
+        return (
+            <div id="main-container">
+                <form onSubmit={this.handleSubmit}>
+                    <img src={logo} alt="" width="200px" class="center" />
+                    <input
+                        placeholder="Criar um box"
+                        value={this.state.newBox}
+                        onChange={this.handleInputChange}
+                    />
+                    <button type="submit">Criar</button>
+                </form>
+            </div>
+        );
+    }
+}
