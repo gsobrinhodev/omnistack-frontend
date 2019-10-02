@@ -39,6 +39,12 @@
     list-style: none;
 }
 
+#box-container ul li {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
 #box-container ul li + li {
     padding-top: 20px;
     margin-top: 20px;
@@ -56,4 +62,9 @@
     font-size: 14px;
     margin-left: 10px;
     color: #333;
+}
+
+#box-container ul li span {
+    color: #999;
+    font-size: 13px;
 }
